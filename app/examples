@@ -1,0 +1,17 @@
+## Create an event for existing organizer forest@gump.com
+curl -X POST "http://localhost:8080/api/sales/events" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Bubba Gump Opening\", \"organizerEmail\": \"forest@gump.com\", \"price\": 49, \"commissions\": [ { \"paymentMethodId\": \"cc\", \"percentage\": 0.25 },{ \"paymentMethodId\": \"cash\", \"value\": 10 } ]}"
+
+## Buy 2 tickets with Event price
+curl -X POST "http://localhost:8080/api/sales/booking" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"eventName\": \"Bubba Gump Opening\", \"client\": \" client1@bubba.com"\,\"qty\": 2, \"subTotal\": 0, \"commission\": 0, \"total\": 0, \"paymentMethodId\": \"cash\"}"
+
+## Buy 1 ticket with given price
+curl -X POST "http://localhost:8080/api/sales/booking" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"eventName\": \"Bubba Gump Opening\", \"client\": \" client1@bubba.com"\,\"qty\": 1,\"price\": 20, \"subTotal\": 0, \"commission\": 0, \"total\": 0, \"paymentMethodId\": \"cash\"}"
+
+## List all created bookings
+curl -X GET "http://localhost:8080/api/sales/bookings" -H "accept: application/json"
+
+## List all created events
+curl -X GET "http://localhost:8080/api/sales/events" -H "accept: application/json"
+
+## List events of forest@gump.com
+curl -X GET "http://localhost:8080/api/sales/events?organizer=forest@gump.com" -H "accept: application/json"

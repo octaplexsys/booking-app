@@ -1,0 +1,14 @@
+version: '3'
+services:
+  sbt-sales-app:
+    build:
+      context: ./target/docker/stage
+    ports:
+      - "8080:8080"
+  swagger:
+    image: swaggerapi/swagger-ui
+    environment:
+      - API_URL=http://localhost:8080/api/sales/api-docs/swagger.yaml
+    ports:
+      - "8081:8080"
+
